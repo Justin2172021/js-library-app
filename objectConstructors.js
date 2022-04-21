@@ -26,22 +26,48 @@ function addBookToLibrary(Title, Author, Pages, Read) {
 function displayBooksOnPage() {
     const books = document.querySelector(".books");
 
-    // Remove all previously displayed cards before I loop over array again
+    // Remove all previously displayed DOM cards before I loop over array again
     const removeDivs = document.querySelectorAll(".card");
-    console.log("show me the node count of current card divs....", removeDivs);
+    console.log("show me the node count of current DOM card divs....", removeDivs);
     for (let i = 0; i < removeDivs.length; i++) {
         removeDivs[i].remove();
     }
     
     // Loop over the library array and display to the cards
-    myLibrary.forEach(myLibrary => {
+    let index = 0;
+    myLibrary.forEach(myLibrarys => {
         const card = document.createElement("div");
         card.classList.add("card");
         books.appendChild(card);
-        for (let key in myLibrary) {
-            console.log(`${key}: ${myLibrary[key]}`);
+        
+        // Create remove book button and add class attribute for each array card
+        const removeBookButton = document.createElement("button");
+        removeBookButton.classList.add("remove-book-button");
+        removeBookButton.textContent = "Remove From Library"
+        console.log("show me my current array objects inside of foreach....", myLibrary);
+        
+        // Link the data attribute of the remove button to the array and card
+        removeBookButton.dataset.linkedArray = index;
+        index++;
+        console.log("show me the dataset link back to the array....", removeBookButton.dataset.linkedArray);
+        card.appendChild(removeBookButton);
+
+        // Start event listener/remove array item from array and card from parent div via data link
+        removeBookButton.addEventListener("click", removeBookFromLibrary);
+
+        function removeBookFromLibrary() {
+            let retrieveBookToRemove = removeBookButton.dataset.linkedArray;
+            console.log("Attempting to remove array item via data attribute....", parseInt(retrieveBookToRemove));
+            myLibrary.splice(parseInt(retrieveBookToRemove), 1);
+            card.remove();
+            displayBooksOnPage();
+        }
+
+        // Loop over the object keys and values and display to each card
+        for (let key in myLibrarys) {
+            console.log(`${key}: ${myLibrarys[key]}`);
             const para = document.createElement("p");
-            para.textContent = (`${key}: ${myLibrary[key]}`);
+            para.textContent = (`${key}: ${myLibrarys[key]}`);
             card.appendChild(para);
         }
     })
