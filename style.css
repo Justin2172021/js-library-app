@@ -14,7 +14,8 @@ html, body {
 }
 
 .books .card {
-    background-color: #FFFFFF;
+    /* background-color: #FFFFFF; */
+    background-color: #68a2ec;
     color: black;
     text-align: center;
     height: 400px;
@@ -78,5 +79,13 @@ h1 {
     grid-row: 5 / 6;
     font-weight: 900;
     background-color: red;
+    border-radius: 10px;
+}
+
+.read-status-button {
+    grid-row: 6 / 7;
+    font-weight: 900;
+    background-color: blue;
+    color: white;
     border-radius: 10px;
 }
