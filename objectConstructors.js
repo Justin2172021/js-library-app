@@ -1,12 +1,13 @@
 // Declare empty array for library
 let myLibrary = [];
 
-// Object constructor
-function Book(Title, Author, Pages, Read) {
-    this.Title = Title;
-    this.Author = Author;
-    this.Pages = Pages;
-    this.Read = Read;
+class Book {
+    constructor(Title, Author, Pages, Read) {
+        this.Title = Title;
+        this.Author = Author;
+        this.Pages = Pages;
+        this.Read = Read;
+    }
 }
 
 // Function for adding a new book to the array/library
