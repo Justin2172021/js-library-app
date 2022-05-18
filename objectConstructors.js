@@ -1,6 +1,7 @@
 // Declare empty array for library
 let myLibrary = [];
 
+// Class Object
 class Book {
     constructor(Title, Author, Pages, Read) {
         this.Title = Title;
