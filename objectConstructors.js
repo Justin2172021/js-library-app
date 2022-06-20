@@ -141,6 +141,7 @@ function intakeFormData() {
   if (Title == "" || Author == "" || Pages == "" || Read == "") {
     return;
   }
+
   // Call function to input the book data to array
   addBookToLibrary(Title, Author, Pages, Read);
 
@@ -155,3 +156,32 @@ clearButton.addEventListener("click", clearForm);
 function clearForm() {
   document.getElementById("add-book").reset();
 }
+
+// Validate the form with the Constraint Validation API
+const constraintValidationAPI = (() => {
+  const valTitle = document.getElementById("Title");
+
+  valTitle.addEventListener("input", () => {
+    valTitle.setCustomValidity("");
+    valTitle.checkValidity();
+  });
+
+  valTitle.addEventListener("invalid", () => {
+    if (valTitle.value === "") {
+      valTitle.setCustomValidity("Title cannot be blank!");
+    }
+  });
+
+  const valAuthor = document.getElementById("Author");
+
+  valAuthor.addEventListener("input", () => {
+    valAuthor.setCustomValidity("");
+    valAuthor.checkValidity();
+  });
+
+  valAuthor.addEventListener("invalid", () => {
+    if (valAuthor.value === "") {
+      valAuthor.setCustomValidity("Author cannot be blank!");
+    }
+  });
+})();
